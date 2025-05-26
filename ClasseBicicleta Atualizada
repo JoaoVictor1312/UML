@@ -1,0 +1,70 @@
+public class Bicicleta {
+    private int velocidade;
+    private int marcha;
+    private int velocidadeMaxima;
+
+    // Construtor com inicialização da velocidade máxima
+    public Bicicleta(int velocidadeMaxima) {
+        this.velocidade = 0;
+        this.marcha = 0;
+        this.velocidadeMaxima = velocidadeMaxima;
+    }
+
+    // Método para acelerar (incrementa a velocidade até o limite máximo)
+    public void acelerar(int incremento) {
+        velocidade += incremento;
+        if (velocidade > velocidadeMaxima) {
+            velocidade = velocidadeMaxima;
+        }
+    }
+
+    // Método para frear
+    public void frear(int decremento) {
+        velocidade -= decremento;
+        if (velocidade < 0) {
+            velocidade = 0;
+        }
+    }
+
+    // Método para mudar a marcha
+    public void mudarMarcha(int novaMarcha) {
+        marcha = novaMarcha;
+    }
+
+    // Imprimir os estados da bicicleta
+    public void imprimirEstados() {
+        System.out.println("Velocidade atual: " + velocidade + " km/h");
+        System.out.println("Marcha: " + marcha);
+        System.out.println("Velocidade máxima: " + velocidadeMaxima + " km/h");
+        System.out.println("-------------------------");
+    }
+}
+
+
+public class ProgramaPrincipal {
+    public static void main(String[] args) {
+        // Criando uma bicicleta com velocidade máxima de 20 km/h
+        Bicicleta minhaBicicleta = new Bicicleta(20);
+
+        // Estado inicial
+        System.out.println("Estado inicial da bicicleta:");
+        minhaBicicleta.imprimirEstados();
+
+        // Ações de aceleração e mudança de marcha
+        minhaBicicleta.mudarMarcha(1);
+        minhaBicicleta.acelerar(5);
+        minhaBicicleta.imprimirEstados();
+
+        minhaBicicleta.mudarMarcha(2);
+        minhaBicicleta.acelerar(10);
+        minhaBicicleta.imprimirEstados();
+
+        // Tentativa de ultrapassar o limite máximo de velocidade
+        minhaBicicleta.acelerar(15); // vai até o máximo de 20
+        minhaBicicleta.imprimirEstados();
+
+        // Frear
+        minhaBicicleta.frear(8);
+        minhaBicicleta.imprimirEstados();
+    }
+}
