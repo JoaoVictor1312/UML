@@ -1,0 +1,88 @@
+Classe abstrata Veiculo
+Atributos: modelo e ano
+Método: alugar()
+
+Interface Motorizado
+Método: abastecer()
+
+Classes que herdam de Veiculo:
+Carro e Moto: implementam Motorizado
+BicicletaEletrica: não implementa Motorizado
+
+
+public abstract class Veiculo {
+    protected String modelo;
+    protected int ano;
+
+    public Veiculo(String modelo, int ano) {
+        this.modelo = modelo;
+        this.ano = ano;
+    }
+
+    public void alugar() {
+        System.out.println("Veículo alugado: " + modelo + " (" + ano + ")");
+    }
+}
+
+
+public interface Motorizado {
+    void abastecer();
+}
+
+
+public class Carro extends Veiculo implements Motorizado {
+
+    public Carro(String modelo, int ano) {
+        super(modelo, ano);
+    }
+
+    @Override
+    public void abastecer() {
+        System.out.println("Abastecendo o carro: " + modelo);
+    }
+}
+
+
+public class Moto extends Veiculo implements Motorizado {
+
+    public Moto(String modelo, int ano) {
+        super(modelo, ano);
+    }
+
+    @Override
+    public void abastecer() {
+        System.out.println("Abastecendo a moto: " + modelo);
+    }
+}
+
+
+public class BicicletaEletrica extends Veiculo {
+
+    public BicicletaEletrica(String modelo, int ano) {
+        super(modelo, ano);
+    }
+
+    // Não implementa abastecer(), pois não é motorizada
+}
+
+
+public class Locadora {
+    public static void main(String[] args) {
+        Veiculo carro = new Carro("Toyota Corolla", 2022);
+        Veiculo moto = new Moto("Honda CG 160", 2021);
+        Veiculo bicicleta = new BicicletaEletrica("Caloi E-Vibe", 2023);
+
+        System.out.println("=== Ações da Locadora ===");
+
+        carro.alugar();
+        ((Motorizado) carro).abastecer();
+
+        moto.alugar();
+        ((Motorizado) moto).abastecer();
+
+        bicicleta.alugar();
+        // bicicleta não implementa Motorizado, então não pode abastecer
+    }
+}
+
+
