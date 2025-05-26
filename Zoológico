@@ -1,0 +1,74 @@
+Classe Abstrata Animal
+Métodos abstratos: emitirSom() e alimentar()
+
+Interface Aquatico
+Método: nadar()
+
+Classe Leao
+Estende Animal
+
+Classe Peixe
+Estende Animal
+Implementa Aquatico
+
+
+public abstract class Animal {
+    public abstract void emitirSom();
+    public abstract void alimentar();
+}
+
+
+public interface Aquatico {
+    void nadar();
+}
+
+
+public class Leao extends Animal {
+
+    @Override
+    public void emitirSom() {
+        System.out.println("O leão ruge!");
+    }
+
+    @Override
+    public void alimentar() {
+        System.out.println("O leão está comendo carne.");
+    }
+}
+
+
+public class Peixe extends Animal implements Aquatico {
+
+    @Override
+    public void emitirSom() {
+        System.out.println("O peixe faz sons borbulhantes.");
+    }
+
+    @Override
+    public void alimentar() {
+        System.out.println("O peixe está comendo algas.");
+    }
+
+    @Override
+    public void nadar() {
+        System.out.println("O peixe está nadando.");
+    }
+}
+
+
+public class Zoologico {
+    public static void main(String[] args) {
+        Animal leao = new Leao();
+        Animal peixe = new Peixe();
+        Aquatico peixeAquatico = (Aquatico) peixe;
+
+        System.out.println("Comportamento do Leão:");
+        leao.emitirSom();
+        leao.alimentar();
+
+        System.out.println("\nComportamento do Peixe:");
+        peixe.emitirSom();
+        peixe.alimentar();
+        peixeAquatico.nadar();
+    }
+}
